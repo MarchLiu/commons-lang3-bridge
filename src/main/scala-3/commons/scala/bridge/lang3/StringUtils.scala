@@ -15,34 +15,15 @@ object StringUtils {
 
 
   object bridge {
-    trait ToStringOpt[-T] extends TypeMapping[T, Option[String]] {
-      override def apply(i: T): Option[String]
-    }
 
-    object ToStringOpt {
-      def apply[S](func: S => Option[String]): ToStringOpt[S] = new ToStringOpt[S] {
-        override def apply(i: S): Option[String] = func(i)
-      }
-
-    }
-
-//    implicit val stringMappingImplicit: ToStringOpt[String] = ToStringOpt(i => Option.apply[String](i))
-//    implicit val stringOptMappingImplicit: ToStringOpt[Option[String]] = ToStringOpt(identity)
-
-    val stringMapping: ToStringOpt[String] = ToStringOpt(i => Option.apply[String](i))
-
-    given ToStringOpt[String] = stringMapping
-
-    val stringOptMapping: ToStringOpt[Option[String]] = ToStringOpt(identity)
-
-    given ToStringOpt[Option[String]] = stringOptMapping
+    given Conversion[String, Option[String]] = (x: String) => Option(x)
 
     import org.apache.commons.lang3.{StringUtils => Strings}
 
-    implicit class StringOptExt[T: ToStringOpt](x: T) {
+    implicit class StringOptExt[T](x: T)(using Conversion[T, Option[String]]) {
 
 
-      private def optFunc: ToStringOpt[T] = summon
+      private def optFunc: Conversion[T, Option[String]] = summon
 
       private def strOpt: Option[String] = optFunc(x)
 
@@ -52,7 +33,6 @@ object StringUtils {
         def contains(searchChar: Char): Boolean = Strings.contains(strOpt.orNull, searchChar)
       }
     }
-
   }
 
   class StringHelper(str: String) {
