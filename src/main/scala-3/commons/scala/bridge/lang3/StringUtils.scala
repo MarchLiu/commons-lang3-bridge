@@ -16,7 +16,8 @@ object StringUtils {
 
   object bridge {
 
-    given Conversion[String, Option[String]] = (x: String) => Option(x)
+    given Conversion[String, Option[String]] = Option.apply[String]
+    given Conversion[Option[String], Option[String]] = identity[Option[String]]
 
     import org.apache.commons.lang3.{StringUtils => Strings}
 

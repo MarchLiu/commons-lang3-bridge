@@ -51,18 +51,18 @@ class StringUtilsSpec extends AnyFlatSpec with Matchers{
   }
 
   "Options" should "test contains operators for option string" in {
-//    val noneStr: Option[String] = None
-//    noneStr.contains(' ') should be(false)
-//    Some("").ops.contains(' ') should be(false)
-//
-//    Some("").ops.contains(None) should be(false)
-//
-//    None.ops.contains(None) should be(false)
-//
-//    Some("abc").ops.contains('a') should be(true)
-//    Some("abc").ops.contains('b') should be(true)
-//    Some("abc").ops.contains('c') should be(true)
-//    Some("abc").ops.contains('z') should be(false)
+    val noneStr: Option[String] = None
+    noneStr.contains(' ') should be(false)
+    Some("").ops.contains(' ') should be(false)
+
+    Some("").ops.contains(None) should be(false)
+
+    None.ops.contains(None) should be(false)
+
+    Some("abc").ops.contains('a') should be(true)
+    Some("abc").ops.contains('b') should be(true)
+    Some("abc").ops.contains('c') should be(true)
+    Some("abc").ops.contains('z') should be(false)
 
   }
 }
