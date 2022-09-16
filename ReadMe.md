@@ -1,3 +1,3 @@
 # Commons Lang3 Scala Bridge
 
-A scala bridge library from apache commons lang3 to scala.
+Commons Lang3 Bridge was moved to  [https://github.com/scala-workers/commons-lang3-bridge](https://github.com/scala-workers/commons-lang3-bridge) .
